@@ -8,10 +8,15 @@
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
     "lint": "eslint \"**/*.{js,ts,tsx,json}\" --max-warnings=0",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "lint:fix-staged": "lint-staged"
   },
   "author": "",
   "license": "ISC",
+  "lint-staged": {
+    "**/*.{js,ts,tsx,json}": "eslint --fix --max-warnings=0",
+    "**/*": "prettier --write"
+  },
   "dependencies": {
     "@typescript-eslint/utils": "^7.6.0"
   },
@@ -27,7 +32,9 @@
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-json": "^3.1.0",
+    "husky": "^9.0.11",
     "jest": "^29.7.0",
+    "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
     "ts-jest": "^29.1.2",
     "typescript": "^5.4.5"
