@@ -9,7 +9,8 @@
     "format:fix": "prettier --write .",
     "lint": "eslint \"**/*.{js,ts,tsx,json}\" --max-warnings=0",
     "lint:fix": "npm run lint -- --fix",
-    "lint:fix-staged": "lint-staged"
+    "lint:fix-staged": "lint-staged",
+    "build": "tsc -p ./tsconfig.build.json"
   },
   "author": "",
   "license": "ISC",
