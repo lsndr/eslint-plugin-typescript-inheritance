@@ -1,54 +1,58 @@
 import { ClassDeclaration, Node, SyntaxKind, TypeChecker } from 'typescript';
 
 export class ClassType {
-    private readonly inheritedClasses: readonly ClassDeclaration[];
+  private readonly inheritedClasses: readonly ClassDeclaration[];
 
-    constructor(node: Node, typeChecker: TypeChecker) {
-        if (node.kind !== SyntaxKind.ClassDeclaration) {
-            throw new Error('Node is not a class declaration');
+  constructor(node: Node, typeChecker: TypeChecker) {
+    if (node.kind !== SyntaxKind.ClassDeclaration) {
+      throw new Error('Node is not a class declaration');
+    }
+
+    this.inheritedClasses = this.extractInheritedClasses(node, typeChecker);
+  }
+
+  private extractInheritedClasses(node: Node, typeChecker: TypeChecker) {
+    const baseTypes = typeChecker.getTypeAtLocation(node).getBaseTypes() || [];
+
+    return baseTypes.reduce<ClassDeclaration[]>(
+      (classDeclarations, baseType) => {
+        const symbol = baseType.getSymbol();
+
+        if (!symbol) {
+          return classDeclarations;
         }
 
-        this.inheritedClasses = this.extractInheritedClasses(node, typeChecker);
-    }
+        const declarations = symbol.getDeclarations();
 
-    private extractInheritedClasses(node: Node, typeChecker: TypeChecker) {
-        const baseTypes = typeChecker.getTypeAtLocation(node).getBaseTypes() || [];
+        if (!declarations) {
+          return classDeclarations;
+        }
 
-        return baseTypes.reduce<ClassDeclaration[]>((classDeclarations, baseType) => {
-            const symbol = baseType.getSymbol();
+        for (const declaration of declarations) {
+          if (this.isClassDeclaration(declaration)) {
+            classDeclarations.push(declaration);
+          }
+        }
 
-            if (!symbol) {
-                return classDeclarations;
-            }
+        return classDeclarations;
+      },
+      [],
+    );
+  }
 
-            const declarations = symbol.getDeclarations();
+  private isClassDeclaration(node: Node): node is ClassDeclaration {
+    return node.kind === SyntaxKind.ClassDeclaration;
+  }
 
-            if (!declarations) {
-                return classDeclarations;
-            }
+  hasInheritance() {
+    return this.inheritedClasses.length > 0;
+  }
 
-            for (const declaration of declarations) {
-                if (this.isClassDeclaration(declaration)) {
-
-                    classDeclarations.push(declaration);
-                }
-            }
-
-            return classDeclarations;
-        }, []);
-    }
-
-    private isClassDeclaration(node: Node): node is ClassDeclaration {
-        return node.kind === SyntaxKind.ClassDeclaration;
-    }
-
-    hasInheritance() {
-        return this.inheritedClasses.length > 0;
-    }
-
-    inheritsOnlyAbstractClasses() {
-        return this.inheritedClasses.every(classDeclaration => {
-            return classDeclaration.modifiers?.some(modifier => modifier.kind === SyntaxKind.AbstractKeyword);
-        });
-    }
+  inheritsOnlyAbstractClasses() {
+    return this.inheritedClasses.every((classDeclaration) => {
+      return classDeclaration.modifiers?.some(
+        (modifier) => modifier.kind === SyntaxKind.AbstractKeyword,
+      );
+    });
+  }
 }
