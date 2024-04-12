@@ -10,7 +10,8 @@
     "lint": "eslint \"**/*.{js,ts,tsx,json}\" --max-warnings=0",
     "lint:fix": "npm run lint -- --fix",
     "lint:fix-staged": "lint-staged",
-    "build": "tsc -p ./tsconfig.build.json"
+    "build": "tsc -p ./tsconfig.build.json",
+    "test:build": "tsc -p ./tsconfig.test.json"
   },
   "author": "",
   "license": "ISC",
