@@ -6,6 +6,6 @@ describe(readPackage, () => {
     const pkg = readPackage();
 
     // assert
-    expect(pkg.name).toBe('eslint-plugin-typescript-no-inheritance');
+    expect(pkg.name).toBe('eslint-plugin-typescript-inheritance');
   });
 });

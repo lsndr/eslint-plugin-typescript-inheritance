@@ -2,7 +2,7 @@ import { ESLintUtils } from '@typescript-eslint/utils';
 import { ClassType } from './class-type';
 
 const createRule = ESLintUtils.RuleCreator(
-  () => `https://github.com/lsndr/eslint-plugin-typescript-no-inheritance`,
+  () => `https://github.com/lsndr/eslint-plugin-typescript-inheritance`,
 );
 
 export const name = 'no-inheritance';
