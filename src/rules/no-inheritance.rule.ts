@@ -5,6 +5,8 @@ const createRule = ESLintUtils.RuleCreator(
   () => `https://github.com/lsndr/eslint-plugin-typescript-no-inheritance`,
 );
 
+export const name = 'no-inheritance';
+
 export const rule = createRule({
   create(context, options) {
     return {
@@ -51,7 +53,7 @@ export const rule = createRule({
       },
     ],
   },
-  name: 'no-inheritance',
+  name,
   defaultOptions: [
     {
       noInheritanceOfAbstractClasses: false,

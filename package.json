@@ -1,8 +1,8 @@
 {
-  "name": "no-inheritance",
+  "name": "eslint-plugin-typescript-no-inheritance",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest",
     "format": "prettier --check .",
@@ -23,11 +23,13 @@
     "@typescript-eslint/utils": "^7.6.0"
   },
   "devDependencies": {
+    "@types/eslint": "^8.56.9",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.12.7",
     "@typescript-eslint/eslint-plugin": "^7.6.0",
     "@typescript-eslint/parser": "^7.6.0",
     "@typescript-eslint/rule-tester": "^7.6.0",
+    "@typescript-eslint/types": "^7.6.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",

@@ -1,5 +1,5 @@
 import { RuleTester } from '@typescript-eslint/rule-tester';
-import { rule } from './rule';
+import * as noInheritanceRule from './no-inheritance.rule';
 import * as path from 'path';
 
 describe('Rule', () => {
@@ -7,11 +7,11 @@ describe('Rule', () => {
     parser: '@typescript-eslint/parser',
     parserOptions: {
       project: './tsconfig.json',
-      tsconfigRootDir: path.resolve(__dirname, '..'),
+      tsconfigRootDir: path.resolve(__dirname, '../..'),
     },
   });
 
-  tester.run('no-inheritance', rule, {
+  tester.run(noInheritanceRule.name, noInheritanceRule.rule, {
     valid: [
       'abstract class Grandparent {} abstract class Parent extends Grandparent {} class Child extends Parent {}',
       'abstract class Parent {} class Child extends Parent {}',
