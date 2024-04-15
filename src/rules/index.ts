@@ -1,5 +1,5 @@
-import * as noInheritanceRule from './no-inheritance';
+import * as noClassInheritanceRule from './no-class-inheritance';
 
 export const rules = {
-  [noInheritanceRule.name]: noInheritanceRule.rule,
+  [noClassInheritanceRule.name]: noClassInheritanceRule.rule,
 };

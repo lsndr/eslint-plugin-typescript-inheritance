@@ -9,7 +9,7 @@ const createRule = ESLintUtils.RuleCreator(
 /**
  * Rule name
  */
-export const name = 'no-inheritance';
+export const name = 'no-class-inheritance';
 
 /**
  * Options
@@ -36,9 +36,12 @@ const meta: NamedCreateRuleMeta<string, Options> = {
     description: 'Inheritance is not allowed.',
   },
   messages: {
-    inheritanceNotAllowed: 'Inheritance is not allowed.',
+    inheritanceNotAllowed:
+      'Inheritance of non-abstract classes is not allowed. Consider using composition or extend abstract class',
+    inheritanceOfAbstractClassesNotAllowed: 'Inheritance is not allowed',
   },
-  type: 'problem',
+  hasSuggestions: true,
+  type: 'suggestion',
   schema: [
     {
       type: 'object',
@@ -72,13 +75,15 @@ export const rule = createRule({
           return;
         }
 
-        if (
-          options[0]?.noInheritanceOfAbstractClasses ||
-          !classType.inheritsOnlyAbstractClasses()
-        ) {
+        if (options[0]?.noInheritanceOfAbstractClasses) {
+          context.report({
+            messageId: 'inheritanceOfAbstractClassesNotAllowed',
+            loc: node.loc,
+          });
+        } else if (!classType.inheritsOnlyAbstractClasses()) {
           context.report({
             messageId: 'inheritanceNotAllowed',
-            node,
+            loc: node.loc,
           });
         }
       },

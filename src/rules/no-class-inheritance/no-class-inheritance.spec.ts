@@ -1,5 +1,5 @@
 import { RuleTester } from '@typescript-eslint/rule-tester';
-import * as noInheritanceRule from './no-inheritance.rule';
+import * as noInheritanceRule from './no-class-inheritance';
 import * as path from 'path';
 
 describe('Rule', () => {
@@ -29,7 +29,7 @@ describe('Rule', () => {
       },
       {
         code: 'abstract class Parent {} class Child extends Parent {}',
-        errors: [{ messageId: 'inheritanceNotAllowed' }],
+        errors: [{ messageId: 'inheritanceOfAbstractClassesNotAllowed' }],
         options: [{ noInheritanceOfAbstractClasses: true }],
       },
       {
