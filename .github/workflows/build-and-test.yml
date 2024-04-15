@@ -1,12 +1,12 @@
 name: Build & Test
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
+      - next
+      - '*.x'
+      - '*.x.x'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
