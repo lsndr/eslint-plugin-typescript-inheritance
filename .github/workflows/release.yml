@@ -1,11 +1,12 @@
 name: Release
+
 on:
   push:
     branches:
       - master
       - next
-      - "*.x"
-      - "*.x.x"
+      - '*.x'
+      - '*.x.x'
 
 permissions:
   contents: read # for checkout
@@ -38,7 +39,7 @@ jobs:
       - name: Setup LTS Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "lts/*"
+          node-version: 'lts/*'
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
