@@ -7,7 +7,7 @@ describe('Rule', () => {
     parser: '@typescript-eslint/parser',
     parserOptions: {
       project: './tsconfig.json',
-      tsconfigRootDir: path.resolve(__dirname, '../..'),
+      tsconfigRootDir: path.resolve(__dirname, '../../..'),
     },
   });
 
