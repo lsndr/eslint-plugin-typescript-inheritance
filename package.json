@@ -12,7 +12,7 @@
     "lint:fix-staged": "lint-staged",
     "build": "tsc -p ./tsconfig.build.json",
     "test:build": "tsc -p ./tsconfig.test.json",
-    "prepare": "npm run build"
+    "prepare": "husky install && npm run build"
   },
   "author": {
     "name": "lsndr",
@@ -28,6 +28,8 @@
     "@typescript-eslint/utils": "^7.6.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.2.2",
+    "@commitlint/config-conventional": "^19.2.2",
     "@semantic-release/git": "^10.0.1",
     "@types/eslint": "^8.56.9",
     "@types/jest": "^29.5.12",
