@@ -14,6 +14,6 @@ export const name = 'recommended';
 export const config = {
   plugins: [pluginName],
   rules: {
-    [`${pluginName}/no-inheritance`]: 'error',
+    [`${pluginName}/no-class-inheritance`]: 'error',
   },
 };
