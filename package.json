@@ -14,8 +14,12 @@
     "test:build": "tsc -p ./tsconfig.test.json",
     "prepare": "npm run build"
   },
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "lsndr",
+    "email": "alexander@lsndr.me",
+    "url": "https://lsndr.me"
+  },
+  "license": "MIT",
   "lint-staged": {
     "**/*.{js,ts,tsx,json}": "eslint --fix --max-warnings=0",
     "**/*": "prettier --write"
