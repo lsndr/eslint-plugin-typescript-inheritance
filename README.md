@@ -9,7 +9,7 @@ ESLint typescript plugin to control inheritance. By default it forbids all inher
 
 ## Installation
 
-This tutorial implies that [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint) is installed and [linting with type information](https://typescript-eslint.io/getting-started/typed-linting) is set up
+> :warning: This tutorial implies that [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint) is installed and [linting with type information](https://typescript-eslint.io/getting-started/typed-linting) is set up
 
 ```sh
 npm install eslint-plugin-typescript-inheritance --save-dev
@@ -35,7 +35,7 @@ Then enable all rules with recommended configuration:
 }
 ```
 
-Or configure the rules you want to use under the rules section.
+Or configure the rules you want to use under the rules section:
 
 ```json
 {
